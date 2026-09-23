@@ -130,5 +130,6 @@ LABEL com.docker.sandboxes="templates" \
     org.opencontainers.image.description="Alpine shell for Docker Sandboxes with Node.js, uv and nested Docker"
 USER agent
 WORKDIR /home/agent/workspace
-ENTRYPOINT ["/sbin/tini", "--"]
+# Reap orphaned descendants even when the runtime starts Tini below PID 1.
+ENTRYPOINT ["/sbin/tini", "-s", "--"]
 CMD ["/bin/bash"]
