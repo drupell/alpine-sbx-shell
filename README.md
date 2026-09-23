@@ -5,7 +5,7 @@ uv/uvx, and a Docker Engine inside each sandbox. No coding agent is preinstalled
 
 ## Compared with shell-docker
 
-Comparison is against Docker’s `shell-docker-0.5.0`.
+Comparison is against Docker’s `shell-docker-0.6.0`.
 
 | Component | Docker shell-docker | This template |
 | --- | --- | --- |
