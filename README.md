@@ -5,12 +5,13 @@ uv/uvx, and a Docker Engine inside each sandbox. No coding agent is preinstalled
 
 ## Compared with shell-docker
 
-Comparison is against Docker’s `shell-docker-0.6.0`.
+Comparison is against Docker’s `shell-docker-0.7.0`.
 
 | Component | Docker shell-docker | This template |
 | --- | --- | --- |
 | Base / C library | Ubuntu 26.04 / glibc | Alpine 3.24 / musl |
 | Bash, passwordless sudo, non-root `agent`, tini | Included | Included |
+| Tini entrypoint | `tini --` | `/sbin/tini --` |
 | Node / npm | 22 / 9 | 24 / 11 |
 | uv / uvx | uv 0.9.26; no uvx executable | Both, 0.11.19 |
 | Nested Docker, Buildx, Compose | Included | Included, from Alpine packages |
@@ -19,6 +20,10 @@ Comparison is against Docker’s `shell-docker-0.6.0`.
 | GitHub CLI, ripgrep, rsync, GnuPG, bubblewrap, full DNS/man tools | Preinstalled | Omitted |
 | Git, curl, jq, SSH client, socat, coreutils | Included | Included |
 | Native clipboard image bridge | Included | Omitted |
+
+Version 0.7.0 removes the Tini `-s` flag added in 0.6.0; its package versions
+are unchanged. This template matches that entrypoint behavior: Tini runs as
+PID 1 to adopt and reap orphaned descendants.
 
 The [clipboard bridge shipped with Docker’s template](https://github.com/dvdksn/clipboardbridge)
 is a third-party shim for native **PNG** clipboard pasting into agents. This
